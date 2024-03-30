@@ -23,8 +23,8 @@ namespace UsefulUtilities
 		public override void OnDisabled()
 		{
 			base.OnDisabled();
-            events.Player.Spawned -= EventHandlers.OnPlayerSpawned;
-            EventHandlers = null;
+			events.Player.Spawned -= EventHandlers.OnPlayerSpawned;
+			EventHandlers = null;
 		}
 	}
 }
