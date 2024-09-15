@@ -11,7 +11,7 @@ namespace UsefulUtilities
 		private Random rand = new Random();
 		public EventHandlers( Plugin plugin ) => this.plugin = plugin;
 
-		public void OnPlayerSpawned( SpawnedEventArgs ev )
+		public void OnPlayerSpawned( ChangedRoleEventArgs ev )
 		{
 			if ( plugin.Config.ExtendedSpawnPool && ev.Player.IsScp && ev.OldRole.Team != Team.SCPs && ev.Player.Role.Type != RoleTypeId.Scp0492 )
 			{

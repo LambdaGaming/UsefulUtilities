@@ -42,22 +42,29 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>\\server-pc\Servers\lambda_scp\SCPSL_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>\\server-pc\Servers\lambda_scp\SCPSL_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Exiled.API">
-      <HintPath>\\server-pc\EXILED\Plugins\dependencies\Exiled.API.dll</HintPath>
+    <Reference Include="Exiled.API, Version=8.9.6.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\server-pc\SCPSL\PluginAPI\plugins\global\dependencies\Exiled.API.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Exiled.Events">
       <HintPath>\\server-pc\EXILED\Plugins\Exiled.Events.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mirror">
       <HintPath>\\server-pc\Servers\lambda_scp\SCPSL_Data\Managed\Mirror.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>\\server-pc\Servers\lambda_scp\SCPSL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
