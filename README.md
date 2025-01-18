@@ -2,7 +2,7 @@
  EXILED plugin for SCP:SL that contains various gameplay changes and configurations.
 
 # Features
-- Option to add SCP-096 and SCP-3114 to the regular spawn pool, no matter how many players are on the server.
+- Option to add SCP-096 back to the regular spawn pool, no matter how many players are on the server.
   - Players who have their SCP-096 preference in the red by any amount will not be forced to switch
   - Only recommended for servers with very small player bases
 - More coming soon

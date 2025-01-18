@@ -11,15 +11,22 @@ namespace UsefulUtilities
 		private Random rand = new Random();
 		public EventHandlers( Plugin plugin ) => this.plugin = plugin;
 
-		public void OnPlayerSpawned( ChangedRoleEventArgs ev )
+		public void OnPlayerSpawned( SpawnedEventArgs ev )
 		{
 			if ( plugin.Config.ExtendedSpawnPool && ev.Player.IsScp && ev.OldRole.Team != Team.SCPs && ev.Player.Role.Type != RoleTypeId.Scp0492 )
 			{
 				int r = rand.Next( 100 );
 				if ( r < 10 )
-					ev.Player.Role.Set( RoleTypeId.Scp3114, SpawnReason.ForceClass );
-				else if ( r < 20 && ev.Player.GetScpPreference( RoleTypeId.Scp096 ) >= 0 )
-					ev.Player.Role.Set( RoleTypeId.Scp096, SpawnReason.ForceClass );
+				{
+					RoleTypeId[] roles = { RoleTypeId.Scp096 };
+					RoleTypeId randRole = roles[rand.Next( roles.Length - 1 )];
+					if ( randRole == RoleTypeId.Scp096 && ev.Player.GetScpPreference( RoleTypeId.Scp096 ) <= 0 )
+					{
+						// Respect player's 096 preference
+						return;
+					}
+					ev.Player.Role.Set( randRole, SpawnReason.ForceClass );
+				}
 			}
 		}
 	}

@@ -8,8 +8,8 @@ namespace UsefulUtilities
 	public class Plugin : Plugin<Config>
 	{
 		private EventHandlers EventHandlers;
-		public override Version Version { get; } = new Version( 1, 1, 0 );
-		public override Version RequiredExiledVersion { get; } = new Version( 9, 0, 0 );
+		public override Version Version { get; } = new Version( 1, 2, 0 );
+		public override Version RequiredExiledVersion { get; } = new Version( 9, 4, 0 );
 		public override string Author { get; } = "OPGman";
 		public override PluginPriority Priority { get; } = PluginPriority.Medium;
 
@@ -17,13 +17,13 @@ namespace UsefulUtilities
 		{
 			base.OnEnabled();
 			EventHandlers = new EventHandlers( this );
-			events.Player.ChangedRole += EventHandlers.OnPlayerSpawned;
+			events.Player.Spawned += EventHandlers.OnPlayerSpawned;
 		}
 
 		public override void OnDisabled()
 		{
 			base.OnDisabled();
-			events.Player.ChangedRole -= EventHandlers.OnPlayerSpawned;
+			events.Player.Spawned -= EventHandlers.OnPlayerSpawned;
 			EventHandlers = null;
 		}
 	}
