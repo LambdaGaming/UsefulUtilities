@@ -13,5 +13,8 @@ namespace UsefulUtilities
 
 		[Description( "Whether or not 096 should be added to the regular spawn pool." )]
 		public bool ExtendedSpawnPool { get; set; } = true;
+
+		[Description( "Whether or not announcing Chaos Insurgency waves is disabled." )]
+		public bool DisableChaosAnnouncement { get; set; } = true;
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Enums;
+using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
 using System;
@@ -28,6 +29,11 @@ namespace UsefulUtilities
 					ev.Player.Role.Set( randRole, SpawnReason.ForceClass );
 				}
 			}
+		}
+
+		public void AnnounceChaos( AnnouncingChaosEntranceEventArgs ev )
+		{
+			ev.IsAllowed = !plugin.Config.DisableChaosAnnouncement;
 		}
 	}
 }

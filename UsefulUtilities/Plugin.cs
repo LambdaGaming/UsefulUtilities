@@ -18,12 +18,14 @@ namespace UsefulUtilities
 			base.OnEnabled();
 			EventHandlers = new EventHandlers( this );
 			events.Player.Spawned += EventHandlers.OnPlayerSpawned;
+			events.Map.AnnouncingChaosEntrance += EventHandlers.AnnounceChaos;
 		}
 
 		public override void OnDisabled()
 		{
 			base.OnDisabled();
 			events.Player.Spawned -= EventHandlers.OnPlayerSpawned;
+			events.Map.AnnouncingChaosEntrance -= EventHandlers.AnnounceChaos;
 			EventHandlers = null;
 		}
 	}

@@ -5,6 +5,7 @@
 - Option to add SCP-096 back to the regular spawn pool, no matter how many players are on the server.
   - Players who have their SCP-096 preference in the red by any amount will not be forced to switch
   - Only recommended for servers with very small player bases
+- Option to disable the announcement when a Chaos Insurgency wave spawns
 - More coming soon
 
 # Notes
