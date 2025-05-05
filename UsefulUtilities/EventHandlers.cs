@@ -17,8 +17,8 @@ namespace UsefulUtilities
 		{
 			if ( plugin.Config.ExtendedSpawnPool && ev.Player.IsScp && ev.OldRole.Team != Team.SCPs && ev.Player.Role.Type != RoleTypeId.Scp0492 )
 			{
-				int r = rand.Next( 100 );
-				if ( r < 10 )
+				int r = rand.Next( 5 );
+				if ( r == 1 )
 				{
 					RoleTypeId[] roles = { RoleTypeId.Scp096 };
 					RoleTypeId randRole = roles[rand.Next( roles.Length - 1 )];
