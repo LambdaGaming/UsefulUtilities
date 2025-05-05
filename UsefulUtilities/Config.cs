@@ -16,5 +16,8 @@ namespace UsefulUtilities
 
 		[Description( "Whether or not announcing Chaos Insurgency waves is disabled." )]
 		public bool DisableChaosAnnouncement { get; set; } = true;
+
+		[Description( "Whether or not the Alpha Warhead deadman's switch is disabled." )]
+		public bool DisableDeadmansSwitch { get; set; } = true;
 	}
 }

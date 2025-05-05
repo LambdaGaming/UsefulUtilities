@@ -1,6 +1,7 @@
 ﻿using Exiled.API.Enums;
 using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Warhead;
 using PlayerRoles;
 using System;
 
@@ -31,9 +32,14 @@ namespace UsefulUtilities
 			}
 		}
 
-		public void AnnounceChaos( AnnouncingChaosEntranceEventArgs ev )
+		public void OnAnnounceChaos( AnnouncingChaosEntranceEventArgs ev )
 		{
 			ev.IsAllowed = !plugin.Config.DisableChaosAnnouncement;
+		}
+
+		public void OnDeadmanSwitch( DeadmanSwitchInitiatingEventArgs ev )
+		{
+			ev.IsAllowed = !plugin.Config.DisableDeadmansSwitch;
 		}
 	}
 }
