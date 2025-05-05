@@ -1,9 +1,11 @@
 ﻿using Exiled.API.Enums;
+using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
-using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Warhead;
+using MEC;
 using PlayerRoles;
 using System;
+using System.Collections.Generic;
 
 namespace UsefulUtilities
 {
@@ -13,22 +15,34 @@ namespace UsefulUtilities
 		private Random rand = new Random();
 		public EventHandlers( Plugin plugin ) => this.plugin = plugin;
 
-		public void OnPlayerSpawned( SpawnedEventArgs ev )
+		private IEnumerator<float> SetScp()
 		{
-			if ( plugin.Config.ExtendedSpawnPool && ev.Player.IsScp && ev.OldRole.Team != Team.SCPs && ev.Player.Role.Type != RoleTypeId.Scp0492 )
+			yield return Timing.WaitForSeconds( 3f );
+			foreach ( Player ply in Player.List )
 			{
-				int r = rand.Next( 5 );
-				if ( r == 1 )
+				if ( ply.IsScp )
 				{
-					RoleTypeId[] roles = { RoleTypeId.Scp096 };
-					RoleTypeId randRole = roles[rand.Next( roles.Length - 1 )];
-					if ( randRole == RoleTypeId.Scp096 && ev.Player.GetScpPreference( RoleTypeId.Scp096 ) <= 0 )
+					int r = rand.Next( 5 );
+					if ( r == 1 )
 					{
-						// Respect player's 096 preference
-						return;
+						RoleTypeId[] roles = { RoleTypeId.Scp096 };
+						RoleTypeId randRole = roles[rand.Next( roles.Length - 1 )];
+						if ( randRole == RoleTypeId.Scp096 && ply.GetScpPreference( RoleTypeId.Scp096 ) < 0 )
+						{
+							// Respect player's 096 preference
+							continue;
+						}
+						ply.Role.Set( randRole, SpawnReason.ForceClass );
 					}
-					ev.Player.Role.Set( randRole, SpawnReason.ForceClass );
 				}
+			}
+		}
+
+		public void OnRoundStart()
+		{
+			if ( plugin.Config.ExtendedSpawnPool )
+			{
+				Timing.RunCoroutine( SetScp() );
 			}
 		}
 
