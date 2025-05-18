@@ -25,7 +25,7 @@ namespace UsefulUtilities
 					int r = rand.Next( 5 );
 					if ( r == 1 )
 					{
-						RoleTypeId[] roles = { RoleTypeId.Scp096 };
+						RoleTypeId[] roles = { RoleTypeId.Scp096, RoleTypeId.Scp3114 };
 						RoleTypeId randRole = roles[rand.Next( roles.Length - 1 )];
 						if ( randRole == RoleTypeId.Scp096 && ply.GetScpPreference( RoleTypeId.Scp096 ) < 0 )
 						{
