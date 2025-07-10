@@ -1,6 +1,7 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
+using Exiled.Events.EventArgs.Scp914;
 using Exiled.Events.EventArgs.Warhead;
 using MEC;
 using PlayerRoles;
@@ -54,6 +55,22 @@ namespace UsefulUtilities
 		public void OnDeadmanSwitch( DeadmanSwitchInitiatingEventArgs ev )
 		{
 			ev.IsAllowed = !plugin.Config.DisableDeadmansSwitch;
+		}
+
+		public void OnUpgradingPlayer( UpgradingPlayerEventArgs ev )
+		{
+			if ( plugin.Config.Allow914PlayerDowngrades )
+			{
+				if ( ev.KnobSetting == Scp914.Scp914KnobSetting.Coarse && ev.Player.Role.Type == RoleTypeId.Scientist )
+				{
+					ev.Player.Role.Set( RoleTypeId.ClassD, SpawnReason.Respawn, RoleSpawnFlags.None );
+					ev.Player.Position = ev.OutputPosition;
+				}
+				else if ( ev.KnobSetting == Scp914.Scp914KnobSetting.Rough && ev.Player.Role.Type == RoleTypeId.ClassD )
+				{
+					ev.Player.Kill( DamageType.Crushed );
+				}
+			}
 		}
 	}
 }

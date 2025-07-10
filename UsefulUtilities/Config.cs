@@ -19,5 +19,8 @@ namespace UsefulUtilities
 
 		[Description( "Whether or not the Alpha Warhead deadman's switch is disabled." )]
 		public bool DisableDeadmansSwitch { get; set; } = true;
+
+		[Description( "Whether or not the downgrading of Scientists and Class Ds in SCP-914 is allowed." )]
+		public bool Allow914PlayerDowngrades { get; set; } = true;
 	}
 }
