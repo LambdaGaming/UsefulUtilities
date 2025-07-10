@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Enums;
+using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Scp914;
@@ -69,6 +70,21 @@ namespace UsefulUtilities
 				else if ( ev.KnobSetting == Scp914.Scp914KnobSetting.Rough && ev.Player.Role.Type == RoleTypeId.ClassD )
 				{
 					ev.Player.Kill( DamageType.Crushed );
+				}
+			}
+			if ( plugin.Config.Scp914TeleportChance > 0 && ev.KnobSetting == Scp914.Scp914KnobSetting.VeryFine )
+			{
+				double chance = rand.NextDouble() * 100;
+				if ( chance <= plugin.Config.Scp914TeleportChance )
+				{
+					RoleTypeId[] roles = {
+						RoleTypeId.ClassD, RoleTypeId.Scientist, RoleTypeId.ChaosConscript,
+						RoleTypeId.NtfCaptain, RoleTypeId.FacilityGuard, RoleTypeId.Scp049,
+						RoleTypeId.Scp096, RoleTypeId.Scp106, RoleTypeId.Scp173,
+						RoleTypeId.Scp3114, RoleTypeId.Scp939
+					};
+					RoleTypeId randRole = roles.RandomItem();
+					ev.OutputPosition = randRole.GetRandomSpawnLocation().Position;
 				}
 			}
 		}
