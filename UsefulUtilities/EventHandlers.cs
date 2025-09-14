@@ -19,15 +19,15 @@ namespace UsefulUtilities
 
 		private IEnumerator<float> SetScp()
 		{
-			List<RoleTypeId> chosenRoles = new List<RoleTypeId>();
 			yield return Timing.WaitForSeconds( 3f );
+			List<RoleTypeId> chosenRoles = new List<RoleTypeId>();
 			foreach ( Player ply in Player.List )
 			{
 				int r = rand.Next( 5 );
 				if ( ply.IsScp && r == 1 )
 				{
 					RoleTypeId[] roles = { RoleTypeId.Scp096, RoleTypeId.Scp3114 };
-					RoleTypeId randRole = roles[rand.Next( roles.Length - 1 )];
+					RoleTypeId randRole = roles[rand.Next( roles.Length )];
 					if ( chosenRoles.Contains( randRole ) )
 					{
 						// Don't assign multiple players to the same SCP
