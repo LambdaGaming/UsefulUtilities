@@ -3,6 +3,7 @@ using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Scp914;
+using Exiled.Events.EventArgs.Server;
 using Exiled.Events.EventArgs.Warhead;
 using MEC;
 using PlayerRoles;
@@ -44,11 +45,26 @@ namespace UsefulUtilities
 			}
 		}
 
+		private bool resetFriendlyFire;
 		public void OnRoundStart()
 		{
 			if ( plugin.Config.ExtendedSpawnPool )
 			{
 				Timing.RunCoroutine( SetScp() );
+			}
+			if ( resetFriendlyFire )
+			{
+				Server.FriendlyFire = false;
+				resetFriendlyFire = false;
+			}
+		}
+
+		public void OnRoundEnd( RoundEndedEventArgs ev )
+		{
+			if ( plugin.Config.EndRoundFriendlyFire && !Server.FriendlyFire )
+			{
+				Server.FriendlyFire = true;
+				resetFriendlyFire = true;
 			}
 		}
 

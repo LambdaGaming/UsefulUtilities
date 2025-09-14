@@ -25,5 +25,8 @@ namespace UsefulUtilities
 
 		[Description( "Chance of players being teleported to a random location when using SCP-914 on very fine. Set to 0 to disable." )]
 		public double Scp914TeleportChance { get; set; } = 5;
+
+		[Description( "Whether or not friendly fire should be enabled after the round ends." )]
+		public bool EndRoundFriendlyFire { get; set; } = true;
 	}
 }
