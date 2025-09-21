@@ -8,8 +8,8 @@ namespace UsefulUtilities
 	public class Plugin : Plugin<Config>
 	{
 		private EventHandlers EventHandlers;
-		public override Version Version { get; } = new Version( 1, 6, 0 );
-		public override Version RequiredExiledVersion { get; } = new Version( 9, 8, 0 );
+		public override Version Version { get; } = new Version( 1, 6, 1 );
+		public override Version RequiredExiledVersion { get; } = new Version( 9, 9, 0 );
 		public override string Author { get; } = "OPGman";
 		public override PluginPriority Priority { get; } = PluginPriority.Medium;
 
@@ -18,6 +18,7 @@ namespace UsefulUtilities
 			base.OnEnabled();
 			EventHandlers = new EventHandlers( this );
 			events.Server.RoundStarted += EventHandlers.OnRoundStart;
+			events.Server.WaitingForPlayers += EventHandlers.OnWaitingForPlayers;
 			events.Server.RoundEnded += EventHandlers.OnRoundEnd;
 			events.Map.AnnouncingChaosEntrance += EventHandlers.OnAnnounceChaos;
 			events.Warhead.DeadmanSwitchInitiating += EventHandlers.OnDeadmanSwitch;
@@ -28,6 +29,7 @@ namespace UsefulUtilities
 		{
 			base.OnDisabled();
 			events.Server.RoundStarted -= EventHandlers.OnRoundStart;
+			events.Server.WaitingForPlayers -= EventHandlers.OnWaitingForPlayers;
 			events.Server.RoundEnded -= EventHandlers.OnRoundEnd;
 			events.Map.AnnouncingChaosEntrance -= EventHandlers.OnAnnounceChaos;
 			events.Warhead.DeadmanSwitchInitiating -= EventHandlers.OnDeadmanSwitch;

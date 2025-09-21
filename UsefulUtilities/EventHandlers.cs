@@ -44,14 +44,18 @@ namespace UsefulUtilities
 				}
 			}
 		}
-
-		private bool resetFriendlyFire;
+		
 		public void OnRoundStart()
 		{
 			if ( plugin.Config.ExtendedSpawnPool )
 			{
 				Timing.RunCoroutine( SetScp() );
 			}
+		}
+
+		private bool resetFriendlyFire;
+		public void OnWaitingForPlayers()
+		{
 			if ( resetFriendlyFire )
 			{
 				Server.FriendlyFire = false;
