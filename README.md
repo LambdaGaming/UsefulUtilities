@@ -13,3 +13,6 @@ Each feature is optional and can be toggled in the config.
 - Chance for players to be teleported to a random location when using SCP-914 on the very fine setting
   - 5% by default
 - Enable friendly fire after the round ends, if it isn't already enabled by default
+
+# Contributing
+ Contributions are welcome! Please read through the [guidelines](https://lambdagaming.github.io/guides/contributing) before submitting an issue or pull request.
