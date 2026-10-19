@@ -3,9 +3,10 @@
 
 # Features
 Each feature is optional and can be toggled in the config.
-- Add SCP-096 and SCP-3114 to the regular spawn pool, no matter how many players are on the server
+- Add SCP-096 and SCP-3114 to the regular spawn pool if they're not part of it already
   - Players who have their SCP-096 preference in the red by any amount will not be forced to switch
 - Disable the announcement when a Chaos Insurgency wave spawns
+  - Currently partially broken due to a game bug; the intro and outro noises still play
 - Disable the Alpha Warhead deadman's switch
 - Allow Scientists and Class Ds to downgrade themselves in SCP-914
   - Scientists will downgrade to Class D when knob is set to course

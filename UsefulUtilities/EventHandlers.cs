@@ -14,22 +14,28 @@ namespace UsefulUtilities;
 public class EventHandlers
 {
 	private Plugin plugin;
-	private Random rand = new Random();
+	private Random rand = new();
 	public EventHandlers( Plugin plugin ) => this.plugin = plugin;
 
 	private IEnumerator<float> SetScp()
 	{
 		yield return Timing.WaitForSeconds( 3f );
-		List<RoleTypeId> chosenRoles = new List<RoleTypeId>();
+		List<RoleTypeId> chosenRoles = [];
+		RoleTypeId[] roles = [];
+
+		// Only add SCPs to extra spawn pool if they're not already in the main one
+		if ( !HolidayUtils.IsHolidayActive( HolidayType.Halloween ) )
+			roles.Append( RoleTypeId.Scp3114 );
+		if ( Player.List.Count < 8 )
+			roles.Append( RoleTypeId.Scp096 );
+		if ( roles.Length == 0 )
+			yield break;
+
 		foreach ( Player ply in Player.List )
 		{
 			int r = rand.Next( 5 );
 			if ( ply.IsScp && r == 1 )
 			{
-				RoleTypeId[] roles = { RoleTypeId.Scp096 };
-				if ( !HolidayUtils.IsHolidayActive( HolidayType.Halloween ) )
-					roles.Append( RoleTypeId.Scp3114 );
-
 				RoleTypeId randRole = roles[rand.Next( roles.Length )];
 
 				// Don't assign multiple players to the same SCP
