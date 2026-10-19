@@ -5,6 +5,7 @@ using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Scp914;
 using Exiled.Events.EventArgs.Server;
 using Exiled.Events.EventArgs.Warhead;
+using MapGeneration.Holidays;
 using MEC;
 using PlayerRoles;
 
@@ -25,24 +26,26 @@ public class EventHandlers
 			int r = rand.Next( 5 );
 			if ( ply.IsScp && r == 1 )
 			{
-				RoleTypeId[] roles = { RoleTypeId.Scp096, RoleTypeId.Scp3114 };
+				RoleTypeId[] roles = { RoleTypeId.Scp096 };
+				if ( !HolidayUtils.IsHolidayActive( HolidayType.Halloween ) )
+					roles.Append( RoleTypeId.Scp3114 );
+
 				RoleTypeId randRole = roles[rand.Next( roles.Length )];
+
+				// Don't assign multiple players to the same SCP
 				if ( chosenRoles.Contains( randRole ) )
-				{
-					// Don't assign multiple players to the same SCP
 					continue;
-				}
+
+				// Respect player's 096 preference
 				if ( randRole == RoleTypeId.Scp096 && ply.GetScpPreference( RoleTypeId.Scp096 ) < 0 )
-				{
-					// Respect player's 096 preference
 					continue;
-				}
+
 				ply.Role.Set( randRole, SpawnReason.ForceClass );
 				chosenRoles.Add( randRole );
 			}
 		}
 	}
-		
+
 	public void OnRoundStart()
 	{
 		if ( plugin.Config.ExtendedSpawnPool )
